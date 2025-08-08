@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">Список доступних кімнат</h1>
+
+  {% if rooms %}
+    <div class="row">
+      {% for room in rooms %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ room.name }}</h5>
+              <p class="card-text">
+                Тип: {{ room.get_room_type_display }}<br>
+                Вмістимість: {{ room.capacity }}<br>
+                Ціна за ніч: {{ room.price_per_night }} грн
+              </p>
+              <a href="{% url 'room_detail' room.id %}" class="btn btn-primary">Переглянути</a>
+              <a href="{% url 'delete_room' room.id %}" class="btn btn-sm btn-danger">Видалити</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Немає доступних кімнат.</p>
+  {% endif %}
+</div>
+{% endblock %}

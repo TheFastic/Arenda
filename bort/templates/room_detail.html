@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Кімната: {{ room.name }}</h2>
+  <p><strong>Тип:</strong> {{ room.get_room_type_display }}</p>
+  <p><strong>Вмістимість:</strong> {{ room.capacity }}</p>
+  <p><strong>Ціна за ніч:</strong> {{ room.price_per_night }} грн</p>
+  <p><strong>Опис:</strong> {{ room.description }}</p>
+  <p><strong>Особливості:</strong> {{ room.features }}</p>
+
+  <a href="{% url 'create_booking' room.id %}" class="btn btn-success mt-3">Забронювати</a>
+
+{% endblock %}
